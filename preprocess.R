@@ -3,6 +3,8 @@ set.seed(42)
 df = read.table('data/movielikes.txt', T)
 users = unique(df$UserID)
 user.count = length(users)
+
+# train-test split: 80:20 of users, not records
 train.filter = sample(seq_len(user.count), size = round(user.count*.8))
 users.train = users[train.filter]
 df.train.filter = df$UserID %in% users.train
