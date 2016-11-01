@@ -3,12 +3,13 @@ test = read.transactions('data/movielikes_test.txt', 'single', cols = c('UserID'
 rules <- apriori(train, parameter = list(supp=0.07, conf=0.95, minlen=2))
 
 test.list = as(test, 'list')
+test.count = length(test)
 
 correct = 0
 total = 0
 rules.lhs = lhs(rules)
 rules.rhs = rhs(rules)
-for (i in 1:length(test)) { # for each transaction (user)
+for (i in 1:test.count) { # for each transaction (user)
         # find rules with antecedent (LHS) in transaction
         is.lhs.in.tx <- is.subset(rules.lhs, test[i])
         
@@ -21,10 +22,9 @@ for (i in 1:length(test)) { # for each transaction (user)
 }
 
 precision = correct / total
-test.count = length(test)
 
 cat('No. of training transactions (users): ', test.count, '\n')
 cat('Correct predictions: ', correct, '\n')
 cat('Total predictions: ', total, '\n')
 cat('Precision: ', precision, '\n')
-cat('Correct predictions / transaction: ', correct/test.count, '\n')
+cat('Correct predictions / transaction: ', correct / test.count, '\n')
