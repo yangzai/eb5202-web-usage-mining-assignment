@@ -21,8 +21,10 @@ for (i in 1:length(test)) { # for each transaction (user)
 }
 
 precision = correct / total
+test.count = length(test)
 
-cat('No. of training transactions (users): ', length(test), '\n')
+cat('No. of training transactions (users): ', test.count, '\n')
 cat('Correct predictions: ', correct, '\n')
 cat('Total predictions: ', total, '\n')
 cat('Precision: ', precision, '\n')
+cat('Correct predictions / transaction: ', correct/test.count, '\n')
