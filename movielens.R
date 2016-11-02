@@ -24,7 +24,7 @@ for (i in 1:test.count) { # for each transaction (user)
         # also include multi antecedent rules
         is.lhs.in.tx <- is.subset(rules.lhs, test[i])
         
-        # filter movies from RHS of rules and union
+        # filter movies from consequent (RHS) of rules and union
         predictions = Reduce(union, as(rules.rhs[is.lhs.in.tx], 'list'), vector('character'))
         
         # increment correct and total predictions
