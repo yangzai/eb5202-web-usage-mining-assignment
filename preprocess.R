@@ -1,6 +1,7 @@
 set.seed(42)
 
-df = read.table('data/movielikes.txt', T)
+df = read.table('data/movielikes.txt', T, colClasses = 'character')
+df$movie = sapply(df$movie, function (m) if (startsWith(m, 'm')) substring(m, 2))
 users = unique(df$UserID)
 user.count = length(users)
 
