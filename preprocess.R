@@ -60,7 +60,7 @@ sapply(users, function (u) {
         s = colSums(genre.base[genre$movie.id %in% m,])
         
         # top 3 genres for user
-        genre.top = names(head(sort(s[s!=0], decreasing = T), 1))
+        genre.top = names(head(sort(s[s!=0], decreasing = T), 3))
         
         sapply(genre.top, function(g) {
                 temp <<- rbind(temp, c(u, g))
